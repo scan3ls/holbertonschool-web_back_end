@@ -6,6 +6,6 @@ import random
 
 async def wait_random(max_delay: int = 10) -> float:
     """ async function to wait and return"""
-    wait_time = random.uniform(0, max_delay+1)
+    wait_time = random.uniform(0, max_delay)
     await asyncio.sleep(wait_time)
     return wait_time
