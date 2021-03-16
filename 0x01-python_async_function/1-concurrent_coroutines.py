@@ -14,13 +14,8 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
         task = asyncio.create_task(wait_random(max_delay))
         mah_list.append(task)
 
-    for task in mah_list:
+    for task in asyncio.as_completed(mah_list):
         num = await task
-        done, pending = await asyncio.wait({task})
-
         mah_nums.append(num)
-
-        if task in done:
-            mah_nums.sort()
 
     return mah_nums
