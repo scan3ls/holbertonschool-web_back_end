@@ -24,8 +24,9 @@ class FIFOCache(BaseCaching):
             return
 
         if key in self.cache_data:
-            # self.FIFOList.remove(key)
-            # self.FIFOList.append(key)
+            self.FIFOList.remove(key)
+            self.FIFOList.append(key)
+            self.cache_data[key] = item
             return
 
         self.cache_data[key] = item
