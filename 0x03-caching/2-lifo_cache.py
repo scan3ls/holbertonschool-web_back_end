@@ -31,7 +31,7 @@ class LIFOCache(BaseCaching):
         if len(self.LIFOList) > self.MAX_ITEMS - 1:
             F_Key = self.LIFOList.pop()
             del self.cache_data[F_Key]
-            print("DISCARD: ", F_Key)
+            print("DISCARD:", F_Key)
 
         self.cache_data[key] = item
         self.LIFOList.append(key)

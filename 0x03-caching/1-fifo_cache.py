@@ -35,7 +35,7 @@ class FIFOCache(BaseCaching):
         if len(self.FIFOList) > self.MAX_ITEMS:
             F_Key = self.FIFOList.pop(0)
             del self.cache_data[F_Key]
-            print("DISCARD: ", F_Key)
+            print("DISCARD:", F_Key)
 
     def get(self, key):
         """
@@ -58,14 +58,8 @@ class FIFOCache(BaseCaching):
 
 if __name__ == "__main__":
     my_cache = FIFOCache()
-    my_cache.put("A", "Hello")
-    my_cache.put("B", "World")
-    my_cache.put("C", "Holberton")
-    my_cache.put("D", "School")
-    my_cache.print_cache()
-    my_cache.put("E", "Battery")
-    my_cache.print_cache()
-    my_cache.put("C", "Street")
-    my_cache.print_cache()
-    my_cache.put("F", "Mission")
-    my_cache.print_cache()
+    for i in range(5):
+        key = "key-{}".format(i)
+        value = "value-{}".format(i)
+        my_cache.put(key, value)
+        my_cache.print_cache()

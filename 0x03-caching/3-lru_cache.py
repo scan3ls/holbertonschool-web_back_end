@@ -35,7 +35,7 @@ class LRUCache(BaseCaching):
         if len(self.LRUList) > self.MAX_ITEMS:
             F_Key = self.LRUList.pop(0)
             del self.cache_data[F_Key]
-            print("DISCARD: ", F_Key)
+            print("DISCARD:", F_Key)
 
     def get(self, key):
         """
