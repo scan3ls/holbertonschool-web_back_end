@@ -40,28 +40,29 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
-            """ """
-            dataset = self.indexed_dataset()
-            assert 0 <= index < len(dataset)
+        """ get indexed data """
+        dataset = self.indexed_dataset()
+        assert isinstance(index, int) and isinstance(page_size, int)
+        assert 0 <= index < len(dataset)
 
-            index_list = [(i + index) for i in range(page_size)]
-            data = []
+        index_list = [(i + index) for i in range(page_size)]
+        data = []
 
-            while len(index_list) > 0:
-                i = index_list[0]
-                try:
-                    data.append(dataset[index_list[0]])
-                    last = index_list.pop(0)
-                except KeyError:
-                    index_list = list(map(lambda x: x + 1, index_list))
-            next_index = last + 1
+        while len(index_list) > 0:
+            i = index_list[0]
+            try:
+                data.append(dataset[index_list[0]])
+                last = index_list.pop(0)
+            except KeyError:
+                index_list = list(map(lambda x: x + 1, index_list))
+        next_index = last + 1
 
-            return {
-                "index": index,
-                "data": data,
-                "page_size": page_size,
-                "next_index": next_index
-            }
+        return {
+            "index": index,
+            "data": data,
+            "page_size": page_size,
+            "next_index": next_index
+        }
 
 
 if __name__ == "__main__":
@@ -72,8 +73,7 @@ if __name__ == "__main__":
     try:
         server.get_hyper_index(300000, 100)
     except AssertionError:
-        print("AssertionError raised when out of range")        
-
+        print("AssertionError raised when out of range")
 
     index = 3
     page_size = 2
@@ -91,7 +91,7 @@ if __name__ == "__main__":
     del server._Server__indexed_dataset[res.get('index')]
     print("Nb items: {}".format(len(server._Server__indexed_dataset)))
 
-    # 4- request again the initial index -> the first data retreives is not the same as the first request
+    # 4- request initial index -> data retreives not same as first request
     print(server.get_hyper_index(index, page_size))
 
     # 5- request again initial next index -> same data page as the request 2-
