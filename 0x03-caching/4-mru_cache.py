@@ -32,7 +32,7 @@ class MRUCache(BaseCaching):
         if len(self.MRUList) >= self.MAX_ITEMS:
             F_Key = self.MRUList.pop()
             del self.cache_data[F_Key]
-            print("DISCARD: ", F_Key)
+            print("DISCARD:", F_Key)
 
         self.cache_data[key] = item
         self.MRUList.append(key)
