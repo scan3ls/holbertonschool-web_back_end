@@ -17,7 +17,7 @@ def filter_datum(fields: List[str],
     for field in fields:
         message = re.sub(
             f"{field}=(.+?){separator}",
-            f"{field}={redaction}{seperator}",
+            f"{field}={redaction}{separator}",
             message
         )
     return message
@@ -36,6 +36,23 @@ def get_logger() -> logging.Logger:
     user_data.addHandler(streamHandler)
 
     return user_data
+
+
+def main():
+    """ """
+
+    user_data = get_logger()
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM users;")
+    fields = cursor.column_names
+    for row in cursor:
+        msg = "; ".join([f"{fields[i]}={str(col)}" for i, col in enumerate(row)])
+        record = logging.LogRecord(user_data.name, logging.INFO, None, None, msg, None, None)
+        print(user_data.handle(record))
+        
+    cursor.close()
+    db.close()
 
 
 def get_db() -> mysql.connector.connection.MySQLConnection:
@@ -70,3 +87,7 @@ class RedactingFormatter(logging.Formatter):
             super().format(record),
             self.SEPARATOR
         )
+
+
+if __name__ == "__main__":
+    main()
