@@ -81,6 +81,7 @@ class RedactingFormatter(logging.Formatter):
     SEPARATOR = ";"
 
     def __init__(self, fields: List[str]):
+        """ constructor for Redacting Formatter """
         super(RedactingFormatter, self).__init__(self.FORMAT)
         self.__fields = [i for i in fields]
 
