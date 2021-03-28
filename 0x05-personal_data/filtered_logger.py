@@ -15,11 +15,8 @@ def filter_datum(fields: List[str],
                  separator: str) -> str:
     """ Use regex to replace occurrences of certain field values """
     for field in fields:
-        message = re.sub(
-            f"{field}=(.+?){separator}",
-            f"{field}={redaction}{separator}",
-            message
-        )
+        message = re.sub(f"{field}=(.+?){separator}",
+                         f"{field}={redaction}{separator}", message)
     return message
 
 
