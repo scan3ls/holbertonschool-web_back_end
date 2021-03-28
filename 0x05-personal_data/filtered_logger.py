@@ -36,7 +36,7 @@ def get_logger() -> logging.Logger:
 
 
 def main():
-    """ """
+    """ main execution function """
 
     user_data = get_logger()
     db = get_db()
