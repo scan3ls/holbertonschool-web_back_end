@@ -47,10 +47,18 @@ def main():
     cursor.execute("SELECT * FROM users;")
     fields = cursor.column_names
     for row in cursor:
-        msg = "; ".join([f"{fields[i]}={str(col)}" for i, col in enumerate(row)])
-        record = logging.LogRecord(user_data.name, logging.INFO, None, None, msg, None, None)
+        msg = "; ".join(
+            [f"{fields[i]}={str(col)}" for i, col in enumerate(row)]
+        )
+        record = logging.LogRecord(
+            user_data.name,
+            logging.INFO,
+            None, None,
+            msg,
+            None, None
+        )
         print(user_data.handle(record))
-        
+
     cursor.close()
     db.close()
 
