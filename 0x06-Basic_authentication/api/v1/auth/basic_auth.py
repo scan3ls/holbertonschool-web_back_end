@@ -48,7 +48,10 @@ class BasicAuth(Auth):
         if value is None:
             return None
 
-        return b64decode(value).decode('utf-8')
+        try: 
+            return b64decode(value).decode('utf-8')
+        except binascii.Error:
+            return None
 
     def extract_user_credentials(
         self,
