@@ -29,7 +29,7 @@ class Auth:
         return True
 
     def authorization_header(self, request=None) -> str:
-        """
+        """ Checks for an Auth payload
         """
         if request is None:
             return None
@@ -42,5 +42,5 @@ class Auth:
         return None
 
     def current_user(self, request=None) -> TypeVar('User'):
-        """ """
+        """ Default to overload in child classes """
         return None
