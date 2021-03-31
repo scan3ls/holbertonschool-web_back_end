@@ -4,6 +4,7 @@ Authentication Module
 from flask import request
 from typing import List, TypeVar
 
+
 class Auth:
     """
     Authentication aclass
@@ -21,10 +22,10 @@ class Auth:
         if s1[-1] != '/':
             s1.append('/')
             path = "".join(s1)
-        
+
         if path in excluded_paths:
             return False
-        
+
         return True
 
     def authorization_header(self, request=None) -> str:

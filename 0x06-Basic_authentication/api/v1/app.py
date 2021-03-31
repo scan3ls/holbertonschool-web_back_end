@@ -30,10 +30,12 @@ def not_found(error) -> str:
     """
     return jsonify({"error": "Not found"}), 404
 
+
 @app.errorhandler(401)
 def unauthorized(error) -> str:
     """ Not an authorized user handler """
     return jsonify({"error": "Unauthorized"}), 401
+
 
 @app.errorhandler(403)
 def fobidden(error) -> str:
@@ -41,6 +43,7 @@ def fobidden(error) -> str:
         access level
     """
     return jsonify({"error": "Forbidden"}), 403
+
 
 @app.before_request
 def before():
@@ -62,6 +65,7 @@ def before():
 
     if auth.current_user(request) is None:
         abort(403)
+
 
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
