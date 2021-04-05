@@ -45,3 +45,15 @@ class Auth:
     def current_user(self, request=None) -> TypeVar('User'):
         """ Default to overload in child classes """
         return None
+
+    def session_cookie(self, request=None):
+        """ return cookie value from request """
+        from os import getenv
+
+        if request is None:
+            return None
+
+        session_name = getenv('SESSION_NAME')
+        cookie = request.cookies.get(session_name)
+
+        return cookie
