@@ -65,9 +65,11 @@ def before():
     if not auth.require_auth(request.path, exclueded_paths):
         return
 
-    unauthorized = auth.authorization_header(request) is None \
-                   and \
-                   auth.session_cookie(request) is None
+    unauthorized = (
+        auth.authorization_header(request) is None
+        and
+        auth.session_cookie(request) is None
+    )
 
     if unauthorized:
         abort(401)
