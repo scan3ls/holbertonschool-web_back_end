@@ -46,7 +46,7 @@ class Auth:
         """ Default to overload in child classes """
         return None
 
-    def session_cookie(self, request=None):
+    def session_cookie(self, request=None) -> str:
         """ return cookie value from request """
         from os import getenv
 
