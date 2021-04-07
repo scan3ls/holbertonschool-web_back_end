@@ -4,6 +4,7 @@
 from flask import jsonify, abort, request
 from api.v1.views import app_views
 
+
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def login() -> str:
     """ Login route
@@ -40,7 +41,12 @@ def login() -> str:
 
     return response
 
-@app_views.route('/auth_session/logout', methods=['DELETE'], strict_slashes=False)
+
+@app_views.route(
+    '/auth_session/logout',
+    methods=['DELETE'],
+    strict_slashes=False
+)
 def logout() -> str:
     """ logout route """
     from api.v1.app import auth
