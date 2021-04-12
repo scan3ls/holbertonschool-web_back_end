@@ -41,7 +41,7 @@ class DB:
 
         return query.one()
 
-    def update_user(self, user_id: int, **kwargs: dict):
+    def update_user(self, user_id: int, **kwargs):
         """ update kwargs of user """
         user = self.find_user_by(id=user_id)
 
