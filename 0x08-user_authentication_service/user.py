@@ -6,6 +6,7 @@ from sqlalchemy import Column, Integer, String, Sequence
 
 Base = declarative_base()
 
+
 class User(Base):
     """ User object
     """
