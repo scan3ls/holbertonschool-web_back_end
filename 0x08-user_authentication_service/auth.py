@@ -14,10 +14,10 @@ def _hash_password(password: str) -> str:
     )
     return hash_pass.decode()
 
-    def _generate_uuid() -> str:
-        """ generate a uuid """
-        from uuid import uuid4
-        return str(uuid4())
+def _generate_uuid() -> str:
+    """ generate a uuid """
+    from uuid import uuid4
+    return str(uuid4())
 
 
 class Auth:
