@@ -14,6 +14,11 @@ def _hash_password(password: str) -> str:
     )
     return hash_pass.decode()
 
+    def _generate_uuid(self) -> str:
+        """ generate a uuid """
+        from uuid import uuid4
+        return str(uuid4())
+
 
 class Auth:
     """Auth class to interact with the authentication database.
@@ -21,11 +26,6 @@ class Auth:
 
     def __init__(self):
         self._db = DB()
-
-    def _generate_uuid(self) -> str:
-        """ generate a uuid """
-        from uuid import uuid4
-        return str(uuid4())
 
     def register_user(self,
                       email: str = None,
