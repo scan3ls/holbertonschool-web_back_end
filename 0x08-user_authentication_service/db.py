@@ -50,7 +50,7 @@ class DB:
         """ update kwargs of user """
         user = self.find_user_by(id=user_id)
 
-        for key  in kwargs:
+        for key in kwargs:
             setattr(user, key, kwargs[key])
 
         self._session.commit()
