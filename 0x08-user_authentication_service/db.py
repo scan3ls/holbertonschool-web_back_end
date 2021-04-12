@@ -49,5 +49,8 @@ class DB:
     def update_user(self, user_id: int, **kwargs: dict):
         """ update kwargs of user """
         user = self.find_user_by(id=user_id)
-        user.__dict__.update(**kwargs)
+
+        for key  in kwargs:
+            setattr(user, key, kwargs[key])
+
         self._session.commit()
