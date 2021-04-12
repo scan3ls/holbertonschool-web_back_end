@@ -6,7 +6,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 from user import Base, User
-from typing import TypeVar
 
 
 class DB:
@@ -34,7 +33,7 @@ class DB:
         self._session.commit()
         return new_user
 
-    def find_user_by(self, **kwargs: dict) -> TypeVar('User'):
+    def find_user_by(self, **kwargs: dict) -> User:
         """ search for user given key word """
 
         session = self._session
