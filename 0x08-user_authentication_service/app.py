@@ -13,6 +13,7 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 AUTH = Auth()
 
+
 @app.route('/', methods=["GET"], strict_slashes=False)
 def basic() -> str:
     """ Basic home
