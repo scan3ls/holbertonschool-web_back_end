@@ -35,5 +35,21 @@ def users() -> str:
     return jsonify({"email": email, "message": "user created"}), 200
 
 
+@app.route('/sessions', methods=['POST'], strict_slashes=False)
+def login() -> str:
+    """ user login
+    """
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    valid = AUTH.valid_login(email, password)
+
+    if not valid:
+        abort(401)
+
+    AUTH.create_session(email)
+    return jsonify({"email": email, "message": "logged in"}), 200
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
