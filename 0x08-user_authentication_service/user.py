@@ -23,9 +23,9 @@ class User(Base):
         """ constructor """
         self.__dict__.update(kwargs)
 
-    def __repr__(self) -> str:
-        """ string representation """
-        user_id = getattr(self, 'id')
-        user_email = getattr(self, 'email')
+    # def __repr__(self) -> str:
+    #     """ string representation """
+    #     user_id = getattr(self, 'id')
+    #     user_email = getattr(self, 'email')
 
-        return f"<User {user_id} {user_email}>"
+    #     return f"<User {user_id} {user_email}>"
