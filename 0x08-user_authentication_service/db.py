@@ -46,7 +46,7 @@ class DB:
         user = self.find_user_by(id=user_id)
 
         for key in kwargs:
-            # if key not in user.__dir()__:
+            # if key not in user.__dir__():
             #     raise ValueError
             setattr(user, key, kwargs[key])
 
