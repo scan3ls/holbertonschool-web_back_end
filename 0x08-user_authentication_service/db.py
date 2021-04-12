@@ -29,12 +29,10 @@ class DB:
 
     def add_user(self, email: str, hashed_password: str) -> TypeVar('User'):
         """ add user to db """
-        session = self._session
-
         new_user = User(email=email, hashed_password=hashed_password)
 
-        session.add(new_user)
-        session.commit()
+        self._session.add(new_user)
+        self._session.commit()
 
         return new_user
 
