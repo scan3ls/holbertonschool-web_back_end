@@ -37,7 +37,7 @@ def users() -> str:
 
 @app.route('/sessions', methods=['POST'], strict_slashes=False)
 def login() -> str:
-    """ user login using flask.abort(401)
+    """ user login using
     """
     email = request.form.get('email')
     password = request.form.get('password')
@@ -45,6 +45,7 @@ def login() -> str:
     valid = AUTH.valid_login(email, password)
 
     if not valid:
+        # flask.abort(401)
         abort(401)
 
     AUTH.create_session(email)
