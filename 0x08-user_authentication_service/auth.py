@@ -38,7 +38,6 @@ class Auth:
 
         return self._db.add_user(email, hashed_password)
 
-
     def valid_login(self, email: str, password: str) -> bool:
         """ check credentails """
         import bcrypt
