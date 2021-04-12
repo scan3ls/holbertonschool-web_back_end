@@ -104,7 +104,8 @@ def update_password():
     new_pass = request.form.get('new_password')
 
     try:
-        user = AUTH.create_session(email)
+        session = AUTH.create_session(email)
+        user = AUTH.get_user_from_session_id(session)
         AUTH.update_password(reset_token, new_pass)
     except Exception:
         abort(403)
