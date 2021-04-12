@@ -98,3 +98,4 @@ class Auth:
 
         token = _generate_uuid()
         self._db.update_user(user.id, reset_token=token)
+        return token
