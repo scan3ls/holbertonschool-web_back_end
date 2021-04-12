@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """ Password Authentication """
-from typing import TypeVar
 from db import DB
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -24,7 +23,7 @@ class Auth:
 
     def register_user(self,
                       email: str = None,
-                      password: str = None) -> TypeVar('User'):
+                      password: str = None) -> User:
         """ register a new user """
         try:
             user = self._db.find_user_by(email=email)
