@@ -41,11 +41,14 @@ class DB:
 
         return query.one()
 
-    def update_user(self, user_id: int, **kwargs):
+    def update_user(self, user_id: int, **kwargs) -> None:
         """ update kwargs of user """
         user = self.find_user_by(id=user_id)
 
         for key in kwargs:
+            if key not in user.__dir()__:
+                raise ValueError
             setattr(user, key, kwargs[key])
 
         self._session.commit()
+        return None
