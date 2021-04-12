@@ -3,7 +3,7 @@
 Route module for the API
 """
 from os import getenv
-from flask import Flask, jsonify, abort, request
+from flask import Flask, jsonify, abort, request, redirect, url_for
 from flask_cors import (CORS, cross_origin)
 import os
 from auth import Auth
@@ -51,6 +51,19 @@ def login() -> str:
     response = jsonify({"email": email, "message": "logged in"})
     response.set_cookie('session_id', session_id)
     return response
+
+
+@app.route('/sessions', methods=['DELETE'], strict_slashes)
+def logout() -> str:
+    """ user logout """
+    session_id = request.cookies.get('session_id')
+    user = AUTH.get_user_from_session_id(session_id)
+
+    if user is None:
+        abort(403)
+
+    AUTH.destroy_session(user.id)
+    return redirect(url_for('basic'))
 
 
 if __name__ == "__main__":
