@@ -45,11 +45,12 @@ def login() -> str:
     valid = AUTH.valid_login(email, password)
 
     if not valid:
-        # flask.abort(401)
         abort(401)
 
     AUTH.create_session(email)
-    return jsonify({"email": email, "message": "logged in"}), 200
+    response = jsonify({"email": email, "message": "logged in"})
+    response.set_cookie('session_id', session_id)
+    return response
 
 
 if __name__ == "__main__":
