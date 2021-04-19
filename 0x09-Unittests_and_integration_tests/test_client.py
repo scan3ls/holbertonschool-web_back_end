@@ -43,4 +43,5 @@ class TestGithubOrgClient(unittest.TestCase):
             foo.return_value = mock_json
 
             test.public_repos()
+            foo.assert_called_once()
             mock_json.assert_called_once()
