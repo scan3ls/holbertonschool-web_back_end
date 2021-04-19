@@ -3,11 +3,11 @@
 from parameterized import parameterized
 import unittest
 from unittest.mock import patch, Mock
-from utils import access_nested_map, get_json
+from utils import access_nested_map, get_json, memoize
 
 
 class TestAccessNestedMap(unittest.TestCase):
-    """ test suite for AccesNestedMap """
+    """ test for AccesNestedMap """
 
     @parameterized.expand([
         ({'a': 1}, ('a',), 1),
@@ -30,7 +30,7 @@ class TestAccessNestedMap(unittest.TestCase):
 
 
 class TestGetJson(unittest.TestCase):
-    """ test suite for GetJson """
+    """ test for GetJson """
 
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
@@ -44,3 +44,29 @@ class TestGetJson(unittest.TestCase):
             response = get_json(test_url)
             request.json.assert_called_once()
             self.assertEqual(response, test_payload)
+
+
+class TestMemoize(unittest.TestCase):
+    """ test memoizaiton """
+
+    def test_memoize(self):
+        """ test memoize """
+
+        class TestClass:
+            """ class import """
+            def a_method(self):
+                """ function 42 """
+                return 42
+
+            @memoize
+            def a_property(self):
+                """ memoize function """
+                return self.a_method()
+
+        test = TestClass()
+        attr = '_a_property'
+        self.assertFalse(hasattr(test, attr))
+
+        value = test.a_property
+        self.assertTrue(hasattr(test, attr))
+        self.assertEqual(getattr(test, attr), value)
