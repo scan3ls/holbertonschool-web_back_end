@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-from client import GithubOrgClient
 from parameterized import parameterized
 import unittest
-from unittest.mock import patch, Mock
+from unittest.mock import patch, Mock, PropertyMock
+import client
 from client import GithubOrgClient
 
 
@@ -18,3 +18,13 @@ class TestGithubOrgClient(unittest.TestCase):
     def test_org(self, org, foo):
         GithubOrgClient(org).org()
         foo.assert_called_once()
+
+    def test_public_repos_url(self):
+        with patch('client.GithubOrgClient.org') as org:
+            org.return_value = 'Known'
+
+            with patch('client.GithubOrgClient._public_repos_url',
+                       new_callable=PropertyMock) as foo:
+                foo.return_value = org()
+                test = GithubOrgClient('name')
+                self.assertEqual(test.org(), test._public_repos_url)
