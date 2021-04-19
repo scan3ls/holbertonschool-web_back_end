@@ -20,6 +20,7 @@ class TestGithubOrgClient(unittest.TestCase):
         foo.assert_called_once()
 
     def test_public_repos_url(self):
+        """ test _public_repos_url property """
         with patch('client.GithubOrgClient.org') as org:
             org.return_value = 'Known'
 
@@ -31,6 +32,7 @@ class TestGithubOrgClient(unittest.TestCase):
 
     @patch('client.get_json')
     def test_public_repos(self, mock_json):
+        """ test public_repos method """
         mock_json.return_value = [
             {'name': 'your choice'},
             {'name': 'my choice'}
