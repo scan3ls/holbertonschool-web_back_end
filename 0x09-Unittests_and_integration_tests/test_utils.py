@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """ test module """
 from parameterized import parameterized
-from nose.tools import assert_equal
 import unittest
 from unittest.mock import patch, Mock
 from utils import access_nested_map, get_json
@@ -17,7 +16,7 @@ class TestAccessNestedMap(unittest.TestCase):
     ])
     def test_access_nested_map(self, mapping, sequence, expected):
         """ test access nested map """
-        assert_equal(access_nested_map(mapping, sequence), expected)
+        self.assertEqual(access_nested_map(mapping, sequence), expected)
 
     @parameterized.expand([
         ({}, ('a',), KeyError),
@@ -27,7 +26,7 @@ class TestAccessNestedMap(unittest.TestCase):
         """ test key error raise """
         with self.assertRaises(Exception) as context:
             access_nested_map(mapping, sequence)
-        assert_equal(type(context.exception), expected)
+        self.assertEqual(type(context.exception), expected)
 
 
 class TestGetJson(unittest.TestCase):
@@ -44,4 +43,4 @@ class TestGetJson(unittest.TestCase):
         with patch('requests.get', return_value=request):
             response = get_json(test_url)
             request.json.assert_called_once()
-            assert_equal(response, test_payload)
+            self.assertEqual(response, test_payload)
