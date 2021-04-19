@@ -28,3 +28,19 @@ class TestGithubOrgClient(unittest.TestCase):
                 foo.return_value = org()
                 test = GithubOrgClient('name')
                 self.assertEqual(test.org(), test._public_repos_url)
+
+    @patch('client.get_json')
+    def test_public_repos(self, mock_json):
+        mock_json.return_value = [
+            {'name': 'your choice'},
+            {'name': 'my choice'}
+        ]
+
+        with patch('client.GithubOrgClient._public_repos_url',
+                   new_callable=PropertyMock) as foo:
+
+            test = GithubOrgClient('Jeff')
+            foo.return_value = mock_json
+
+            test.public_repos()
+            mock_json.assert_called_once()
