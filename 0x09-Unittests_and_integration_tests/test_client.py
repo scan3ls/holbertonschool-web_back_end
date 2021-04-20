@@ -5,6 +5,7 @@ import unittest
 from unittest.mock import patch, Mock, PropertyMock
 import client
 from client import GithubOrgClient
+from fixtures import TEST_PAYLOAD
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -56,3 +57,27 @@ class TestGithubOrgClient(unittest.TestCase):
     ])
     def test_has_license(self, repo, license_key):
         self.assertTrue(True)
+
+
+@parameterized_class([
+    {'org_payload': TEST_PAYLOAD[0][0]},
+    {'repos_payload': TEST_PAYLOAD[0][1]},
+    {'expected_repos': TEST_PAYLOAD[0][2]},
+    {'apache2_repos': TEST_PAYLOAD[0][3]}
+])
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """ Integration test """
+
+    @classmethod
+    def setUpClass(cls):
+        """ setup class """
+        config = {
+            'json.side_effect': repos_payload
+        }
+        cls.get_patcher = patch('requests.get', **config)
+        cls.get_patcher.start()
+
+    @classmethod
+    def tearDownClass(cls):
+        """ tearDown Class """
+        cls.get_patcher.stop()
