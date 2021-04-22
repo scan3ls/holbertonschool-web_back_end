@@ -56,7 +56,7 @@ def index():
         name = user['name']
     except Exception:
         user, name = None, None
-    return render_template('5-index.html', user=user, username=name)
+    return render_template('6-index.html', user=user, username=name)
 
 
 def get_user() -> Dict:
