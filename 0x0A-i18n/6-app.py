@@ -61,7 +61,8 @@ def index():
 
 def get_user() -> Dict:
     """ return user from mock users data """
-    user_id = int(request.args.get('login_as'))
+    user_id = request.args.get('login_as')
+    user_id = int(user_id) if user_id is not None else None
     if user_id in users:
         return users[user_id]
     return None
