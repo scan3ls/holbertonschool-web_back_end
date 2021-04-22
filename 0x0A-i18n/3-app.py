@@ -25,10 +25,10 @@ app.config.from_object(Config)
 @babel.localeselector
 def get_locale():
     """ get best language """
-    return request.accept_languages.best_match(app.config[LANGUAGES])
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/')
 def index():
     """ simple route to index.html """
-    return render_template('2-index.html')
+    return render_template('3-index.html')
