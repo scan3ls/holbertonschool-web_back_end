@@ -2,7 +2,7 @@
 """ redis exercises """
 import redis
 from typing import Union, Callable, Any
-from functool import wraps
+from functools import wraps
 
 
 def count_calls(method: Callable) -> Callable:
