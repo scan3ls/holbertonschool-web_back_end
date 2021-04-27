@@ -12,6 +12,7 @@ def count_calls(method: Callable) -> Callable:
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         self._redis.incr(key, amount=1)
+        # print(self._redis.get(key), key)
         return method(self, *args, **kwargs)
     return wrapper
 
@@ -28,6 +29,24 @@ def call_history(method: Callable) -> Callable:
         self._redis.rpush(output_key, output)
         return output
     return wrapper
+
+
+def replay(method: Callable):
+    """ recall history of method calls """
+    db = redis.Redis()
+    key = method.__qualname__
+
+    input_key, output_key = f"{key}:inputs", f"{key}:outputs"
+    inputs = db.lrange(input_key, 0, -1)
+    outputs = db.lrange(output_key, 0, -1)
+
+    amount = int(db.get(key))
+    print(f"{key} was called {amount} time:")
+    for index, item in enumerate(inputs):
+        s_input = inputs[index].decode('utf-8')
+        s_output = outputs[index].decode('utf-8')
+        s1 = f"{key}(*{s_input}) -> {s_output}"
+        print(s1)
 
 
 class Cache():
