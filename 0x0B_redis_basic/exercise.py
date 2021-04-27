@@ -17,12 +17,12 @@ class Cache():
         from uuid import uuid4
 
         key = str(uuid4())
-        self._redis.mset({key: data})
+        self._redis.append({key: data})
         self._redis.save()
 
         return key
 
-    def get(self, key: str, fn: Callable) -> Any:
+    def get(self, key: str, fn: Callable) -> Union[str, bytes, int, float]:
         """ return data in original form """
         value = self._redis.get(key)
         return fn(value) if fn is not None else value
