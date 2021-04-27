@@ -32,5 +32,5 @@ class Cache():
         return self.get(key, str)
 
     def get_int(self, key: str) -> int:
-    """ call get w/ fn=str """
-    return self.get(key, int)
+        """ call get w/ fn=str """
+        return self.get(key, int)
