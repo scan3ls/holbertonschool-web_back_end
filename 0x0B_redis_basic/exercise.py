@@ -17,8 +17,7 @@ class Cache():
         from uuid import uuid4
 
         key = str(uuid4())
-
-        self._redis.append(key, data)
+        self._redis.mset({key: data})
         self._redis.save()
 
         return key
