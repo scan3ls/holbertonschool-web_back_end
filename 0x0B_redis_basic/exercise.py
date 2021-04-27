@@ -31,7 +31,7 @@ def call_history(method: Callable) -> Callable:
     return wrapper
 
 
-def replay(method: Callable):
+def replay(method: Callable) -> str:
     """ recall history of method calls zip """
     db = redis.Redis()
     key = method.__qualname__
