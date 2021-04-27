@@ -41,7 +41,7 @@ def replay(method: Callable):
     outputs = db.lrange(output_key, 0, -1)
 
     amount = int(db.get(key))
-    print(f"{key} was called {amount} time:")
+    print(f"{key} was called {amount} times:")
     for index, item in enumerate(inputs):
         s_input = inputs[index].decode('utf-8')
         s_output = outputs[index].decode('utf-8')
