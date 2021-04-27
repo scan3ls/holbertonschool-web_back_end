@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ redis exercises """
 import redis
-from typing import Union, Callable
+from typing import Union, Callable, Any
 
 
 class Cache():
@@ -22,7 +22,7 @@ class Cache():
 
         return key
 
-    def get(self, key: str, fn: Callable) -> Union[str, bytes, int, float]:
+    def get(self, key: str, fn: Callable) -> Any:
         """ return data in original form """
         value = self._redis.get(key)
         return fn(value) if fn is not None else value
