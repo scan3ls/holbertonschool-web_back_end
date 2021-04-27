@@ -26,17 +26,3 @@ class Cache():
         """ return data in original form """
         value = self._redis.get(key)
         return fn(value) if fn is not None else value
-
-    def get_str(self, key: str) -> str:
-        """ get w/ str function """
-        try:
-            return self.get(key, str)
-        except ValueError as e:
-            print(e)
-
-    def get_int(self, key: str) -> int:
-        """ get w/ int function """
-        try:
-            return self.get(key, int)
-        except ValueError as e:
-            print(e)
