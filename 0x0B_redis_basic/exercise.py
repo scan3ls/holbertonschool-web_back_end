@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ redis exercises """
 from redis import Redis
-from typing import Union, Any, Callable
+from typing import Union, Callable
 
 
 class Cache():
