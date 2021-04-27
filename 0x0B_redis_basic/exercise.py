@@ -34,11 +34,3 @@ class Cache():
     def get_int(self, key: str) -> int:
         """ call get w/ fn=int """
         return self.get(key, int)
-
-    def get_bytes(self, key: str) -> bytes:
-        """ call get w/ fn=bytes """
-        return self.get(key, bytes)
-
-    def get_float(self, key: str) -> float:
-        """ call get w/ fn=float """
-        return self.get(key, float)
