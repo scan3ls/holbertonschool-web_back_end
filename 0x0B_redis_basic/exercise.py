@@ -50,7 +50,7 @@ class Cache():
 
         return key
 
-    def get(self, key: str, fn: Callable) -> Any:
+    def get(self, key: str, fn: Callable = None) -> Any:
         """ return data in original form """
         value = self._redis.get(key)
         return fn(value) if fn is not None else value
