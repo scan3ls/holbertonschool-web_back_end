@@ -10,7 +10,7 @@ CREATE
         DECLARE average INT DEFAULT 0;
 
         SELECT
-            SUM(score) / COUNT(user_id)
+            AVG(score)
         INTO average
         FROM corrections
         WHERE
