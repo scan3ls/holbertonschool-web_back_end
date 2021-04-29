@@ -6,4 +6,4 @@ SELECT
     FROM
         metal_bands
     WHERE
-        style LIKE '%Glam Rock%'
+        style LIKE '%Glam Rock%';
