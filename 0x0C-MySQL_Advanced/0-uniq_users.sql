@@ -1,3 +1,5 @@
+-- Creates a table 'users'
+-- comment 2
 CREATE TABLE IF NOT EXISTS users
 (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL
