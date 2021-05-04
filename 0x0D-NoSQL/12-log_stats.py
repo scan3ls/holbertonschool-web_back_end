@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from pymongo import MongoClient
 
+
 def print_counts(count, methods, checks):
     print(f"{count} logs")
     print("Methods:")
@@ -8,6 +9,7 @@ def print_counts(count, methods, checks):
         value = methods[method]
         print(f"\tmethod {method}: {value}")
     print(f"{checks} status check")
+
 
 if __name__ == "__main__":
     client = MongoClient()

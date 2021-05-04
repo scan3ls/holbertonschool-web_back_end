@@ -10,4 +10,4 @@ def schools_by_topic(mongo_collection, topic):
         topic - (string) will be topic searched
     ===========================================
     """
-    return mongo_collection.find( {"topics": {"$in": [topic]}} )
+    return mongo_collection.find({"topics": {"$in": [topic]}})
