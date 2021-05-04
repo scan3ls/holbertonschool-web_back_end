@@ -1,0 +1,2 @@
+// All documents
+myCursor = db.school.find( {} )
