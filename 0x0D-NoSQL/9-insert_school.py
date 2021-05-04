@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+""" 9-insert_school docstring """
+
 
 def insert_school(mongo_collection, **kwargs):
     """ Inerts new document in collections """
