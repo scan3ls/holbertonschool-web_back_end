@@ -4,6 +4,7 @@ from pymongo import MongoClient
 
 
 def print_counts(count, methods, checks):
+    """ print_counts docstring """
     print(f"{count} logs")
     print("Methods:")
     for method in methods:
