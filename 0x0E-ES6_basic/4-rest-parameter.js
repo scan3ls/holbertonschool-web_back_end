@@ -1,5 +1,5 @@
-import { count } from "console";
+import { count } from 'console';
 
 export default function returnHowManyArguments(...Argv) {
-    return Argv.slice().length;
+  return Argv.slice().length;
 }
