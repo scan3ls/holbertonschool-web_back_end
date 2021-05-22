@@ -1,5 +1,6 @@
 function displayMessage(msg) {
-  console.log(msg);
+  if (typeof msg !== 'string') return;
+  process.stdout.write(`${msg}\n`);
 }
 
-export default displayMessage;
+module.exports = displayMessage;
