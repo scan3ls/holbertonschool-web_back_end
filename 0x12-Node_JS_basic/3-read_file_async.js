@@ -1,10 +1,14 @@
 const readFile = require('./2-read_file');
 
 function countStudents(path) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      readFile(path);
-      resolve();
+      try {
+        readFile(path);
+        resolve();
+      } catch (error) {
+        reject(error)
+      }
     });
   });
 }
