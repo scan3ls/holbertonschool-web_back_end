@@ -36,4 +36,4 @@ function countStudents(path) {
   }
 }
 
-export default countStudents;
+module.exports = countStudents;
