@@ -7,7 +7,7 @@ function countStudents(path) {
         readFile(path);
         resolve();
       } catch (error) {
-        reject(error)
+        reject(error);
       }
     });
   });
