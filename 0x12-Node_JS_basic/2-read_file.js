@@ -6,7 +6,7 @@ function countStudents(path) {
         && typeof path !== 'number'
         && !(path instanceof URL)
         && !(path instanceof Buffer))
-        || fs.existsSync(path)
+        || !(fs.existsSync(path))
   ) throw Error('Cannot load the database');
 
   const data = fs.readFileSync(path, 'utf-8');
