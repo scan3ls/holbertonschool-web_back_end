@@ -1,12 +1,10 @@
 const fs = require('fs');
 
 function countStudents(path) {
+  const invalidType = (arg) => typeof arg !== 'string' && typeof arg !== 'number' && !(arg instanceof URL) && !(arg instanceof Buffer);
   if (
-    (typeof path !== 'string'
-        && typeof path !== 'number'
-        && !(path instanceof URL)
-        && !(path instanceof Buffer))
-        || !(fs.existsSync(path))
+    invalidType(path)
+    || !(fs.existsSync(path))
   ) throw Error('Cannot load the database');
 
   const data = fs.readFileSync(path, 'utf8');
