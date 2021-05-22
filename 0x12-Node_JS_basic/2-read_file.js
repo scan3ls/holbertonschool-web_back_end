@@ -17,7 +17,7 @@ function countStudents(path) {
 
   lineItems.forEach((value) => {
     const entry = value.split(',');
-    if (entry.length < 4) return;
+    if (entry.length !== 4) return;
 
     const field = entry[entry.length - 1];
     if (field === 'field') return;
