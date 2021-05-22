@@ -29,7 +29,7 @@ function countStudents(path) {
     fields[field].push(firstName);
   });
 
-  console.log('Number of students:', numberOfStudents);
+  console.log(`Number of students: ${numberOfStudents}`);
 
   Object.keys(fields).forEach((key) => {
     if (key === '') return;
