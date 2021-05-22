@@ -1,6 +1,5 @@
 function displayMessage(msg) {
-  if (typeof msg !== 'string') return;
-  process.stdout.write(`${msg}\n`);
+  console.log(msg);
 }
 
 export default displayMessage;
