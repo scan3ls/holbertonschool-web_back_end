@@ -12,10 +12,10 @@ function countStudents(path) {
   const data = fs.readFileSync(path, 'utf-8');
 
   const fields = {};
-  const split = data.split('\n');
+  const lineItems = data.split('\n');
   let numberOfStudents = 0;
 
-  split.forEach((value) => {
+  lineItems.forEach((value) => {
     const entry = value.split(',');
     if (entry.length < 4) return;
 
