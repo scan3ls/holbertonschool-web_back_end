@@ -35,7 +35,10 @@ function countStudents(path) {
     console.log(`Number of students in ${key}: ${value.length}. List: ${value.join(', ')}`);
   });
 
-  return [fields, numberOfStudents];
+  return {
+    'fields': fields,
+    'studentCount': numberOfStudents
+  };
 }
 
 module.exports = countStudents;
