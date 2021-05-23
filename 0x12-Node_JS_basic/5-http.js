@@ -30,7 +30,7 @@ const students = (res, database = process.argv[2]) => {
       });
     })
     .catch((err) => {
-      res.write(err.message);
+      res.write(`Error: ${err.message}`);
     })
     .finally(() => {
       res.end();
