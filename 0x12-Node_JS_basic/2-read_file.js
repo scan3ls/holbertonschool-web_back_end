@@ -36,8 +36,8 @@ function countStudents(path) {
   });
 
   return {
-    'fields': fields,
-    'studentCount': numberOfStudents
+    fields,
+    studentCount: numberOfStudents,
   };
 }
 
