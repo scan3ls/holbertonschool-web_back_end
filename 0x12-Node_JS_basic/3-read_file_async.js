@@ -4,8 +4,7 @@ function countStudents(path) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       try {
-        readFile(path);
-        resolve();
+        resolve(readFile(path));
       } catch (error) {
         reject(error);
       }
