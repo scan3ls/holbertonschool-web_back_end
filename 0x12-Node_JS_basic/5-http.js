@@ -16,12 +16,12 @@ const students = (res, database = process.argv[2]) => {
   res.setHeader('Content-Type', 'text/plain');
   const promise = readFile(database);
 
+  res.write('This is the list of our students\n');
   promise
     .then((data) => {
       const { fields } = data;
       const { studentCount } = data;
 
-      res.write('This is the list of our students\n');
       res.write(`Number of students: ${studentCount}`);
       Object.keys(fields).forEach((key) => {
         if (key === '') return;
