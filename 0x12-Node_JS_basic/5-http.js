@@ -11,10 +11,10 @@ const index = (res) => {
   res.end('Hello Holberton School!');
 };
 
-const students = (res, url = process.argv[2]) => {
+const students = (res, database = process.argv[2]) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  const promise = readFile(url);
+  const promise = readFile(database);
 
   promise
     .then((data) => {
