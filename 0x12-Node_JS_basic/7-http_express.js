@@ -17,7 +17,7 @@ app.get('/students', (req, res) => {
     const { fields } = data;
     const { studentCount } = data;
 
-    let output = `Number of students: ${studentCount}`;
+    let output = `This is the list of our students\nNumber of students: ${studentCount}`;
 
     Object.keys(fields).forEach((key) => {
       if (key === '') return;
