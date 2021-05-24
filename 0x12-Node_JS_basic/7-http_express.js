@@ -12,24 +12,28 @@ app.get('/students', (req, res) => {
   const database = process.argv[2];
   const promise = readFile(database);
 
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+
+  res.write('This is the list of our students\n');
   promise
-  .then( (data) => {
-    const { fields } = data;
-    const { studentCount } = data;
+    .then((data) => {
+      const { fields } = data;
+      const { studentCount } = data;
 
-    let output = `This is the list of our students\nNumber of students: ${studentCount}`;
-
-    Object.keys(fields).forEach((key) => {
-      if (key === '') return;
-      const value = fields[key];
-      output = output + (`\nNumber of students in ${key}: ${value.length}. List: ${value.join(', ')}`);
+      res.write(`Number of students: ${studentCount}`);
+      Object.keys(fields).forEach((key) => {
+        if (key === '') return;
+        const value = fields[key];
+        res.write(`\nNumber of students in ${key}: ${value.length}. List: ${value.join(', ')}`);
+      });
+    })
+    .catch((err) => {
+      res.write(err.message);
+    })
+    .finally(() => {
+      res.end();
     });
-    res.send(output);
-  })
-  .catch(err => {
-    let output = `This is the list of our students\n${err.message}`
-    res.send(ouput);
-  })
 });
 
 app.listen(port, () => {
