@@ -2,16 +2,15 @@ const calculateNumber = require('./2-calcul_chai');
 const chai = require('chai');
 const expect = chai.expect;
 
-describe('Calcultor functions', () => {
-    it('Addition', () => { 
-        expect(calculateNumber('SUM', 1.4, 4.5)).to.equal(6);
-    });
+describe('DIVISION', () => {
+    it('Divide by Zero', () => { expect(calculateNumber('DIVIDE', 1.4, 0)).to.equal('Error') });
+    it('Valid Division', () => { expect(calculateNumber('DIVIDE', 4, 2)).to.equal(2) });
+});
 
-    it('Subraction', () => { 
-        expect(calculateNumber('SUBTRACT', 1.4, 4.5)).to.equal(-4);
-    });
+describe('ADDITION', () => {
+    it('Valid Addition', () => { expect(calculateNumber('SUM', 1.4, 4.5)).to.equal(6) });
+});
 
-    it('Division', () => {
-        expect(calculateNumber('DIVIDE', 1.4, 0)).to.equal('Error');
-    });
+describe('SUBTRACTION', () => {
+    it('Valid subtraction', () => { expect(calculateNumber('SUBTRACT', 1.4, 4.5)).to.equal(-4) });
 });
