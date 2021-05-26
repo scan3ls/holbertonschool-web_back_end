@@ -13,9 +13,10 @@ app.get('/cart/:id', (req, res) => {
   if (isNaN(id)) {
     res.status(404);
     res.send('Id must be a number');
+  } else {
+    res.status(200);
+    res.send(`Payment methods for cart ${id}`);
   }
-  res.status(200);
-  res.send(`Payment methods for cart ${id}`);
 });
 
 app.listen(port, () => {
