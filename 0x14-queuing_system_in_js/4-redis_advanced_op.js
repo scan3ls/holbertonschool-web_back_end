@@ -11,7 +11,7 @@ const pairs =  {
     "Paris": "2",
 }
 
-client.on('ready', () => {
+client.on('connect', () => {
     console.log('Redis client connected to the server');
 });
 
